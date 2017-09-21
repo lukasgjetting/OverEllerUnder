@@ -4,7 +4,8 @@ class Spiller:
 	promille = 0
 
 	def hævPromille():
-		tilfældigt = random.random()
+		"""Hæver brugerens promille med et tilfældigt kommatal mellem 0 og 0,5."""
+		promille += random.random() / 2
 
 	def erDød():
 		"""Returnerer True hvis spillerens promille er over 4, ellers False."""
