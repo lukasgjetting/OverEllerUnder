@@ -21,5 +21,6 @@ def setup():
 
 	bruger = spiller.Spiller(navn)
 
+	spillet = spil.Spil(bruger, antalSpillere)
 
 setup()

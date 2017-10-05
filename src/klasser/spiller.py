@@ -22,6 +22,9 @@ class AISpiller(Spiller):
 
 	navne = ["Noah", "Sofia", "Victor", "Alma", "Oliver", "Emma", "Oscar", "Ella", "William", "Ida", "Lukas", "Freja", "Carl", "Clara", "Malthe", "Anna", "Emil", "Laura", "Alfred", "Olivia"]
 
+	def __init__(self):
+		self.navn = navne[random.random(rand.randint((0, navne.len-1)))]
+
 	def gæt(self, nuværendeKort):
 		"""
 		Returnerer 1, -1 eller 0 alt efter om spilleren gætter på at næste kort er over, under eller lige på
