@@ -4,23 +4,23 @@ class Kortspil:
 	kort = None
 
 	def __init__(self):
-		kort = []
+		self.kort = []
 
 		for værdi in range(1, 14):
 			for kulør in range(4):
-				kort.append(Kort(værdi, kulør))
+				self.kort.append(Kort(værdi, kulør))
 
-		random.shuffle(kort)
+		random.shuffle(self.kort)
 
-		for i in range(len(kort)):
-			print(kort[i].tilStreng())
+		for i in range(len(self.kort)):
+			print(self.kort[i].tilStreng())
 
 	def nuværendeKort(self):
-		return kort[len(kort)-1]
+		return self.kort[len(self.kort)-1]
 
 	def trækKort(self):
-		kort.pop()
-		return kort[len(kort)-1]
+		self.kort.pop()
+		return self.nuværendeKort()
 
 kortVærdiTekst = {
 	1: "Es",

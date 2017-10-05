@@ -23,7 +23,7 @@ class AISpiller(Spiller):
 	navne = ["Noah", "Sofia", "Victor", "Alma", "Oliver", "Emma", "Oscar", "Ella", "William", "Ida", "Lukas", "Freja", "Carl", "Clara", "Malthe", "Anna", "Emil", "Laura", "Alfred", "Olivia"]
 
 	def __init__(self):
-		self.navn = navne[random.random(rand.randint((0, navne.len-1)))]
+		self.navn = self.navne[random.randint(0, len(self.navne)-1)]
 
 	def gæt(self, nuværendeKort):
 		"""

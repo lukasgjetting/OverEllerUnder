@@ -1,5 +1,5 @@
-import spiller
-import kortspil
+from klasser.spiller import *
+from klasser.kortspil import *
 
 class Spil:
 	bruger = None
@@ -13,8 +13,8 @@ class Spil:
 		self.aiSpillere = [antalModstandere]
 
 
-		for i in range(antalModstandere):
-			self.aiSpillere[i] = spiller.AISpiller()
+		for i in range(antalModstandere-1):
+			self.aiSpillere[i] = AISpiller()
 
 		self.kortspil = Kortspil()
 

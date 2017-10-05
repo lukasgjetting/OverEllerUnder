@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from klasser import spiller
+from klasser.spiller import *
+from klasser.spil import *
 
 # Brugeren vælger hvor mange spillere, der skal være med. Dette er egentlig bare et spørgsmål om hvor langt spillet skal være, da brugeren kun kan styre én bruger.
 # Derefter starter spillet.
@@ -19,8 +20,8 @@ def setup():
 	navn = input("Hvad er dit navn? ")
 	antalSpillere = int(input("Hvor mange andre spillere vil du spille med? (anbefalet mellem 1 og 5) "))
 
-	bruger = spiller.Spiller(navn)
+	bruger = Spiller(navn)
 
-	spillet = spil.Spil(bruger, antalSpillere)
+	spillet = Spil(bruger, antalSpillere)
 
 setup()
