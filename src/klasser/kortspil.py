@@ -1,4 +1,5 @@
 import random
+import konstanter
 
 class Kortspil:
 	kort = None
@@ -6,6 +7,9 @@ class Kortspil:
 	def __init__(self):
 		self.kort = []
 
+		self.bland()
+
+	def bland(self):
 		for værdi in range(1, 14):
 			for kulør in range(4):
 				self.kort.append(Kort(værdi, kulør))
@@ -19,36 +23,19 @@ class Kortspil:
 		# Fjerner et kort fra kortspillet og returnerer 0 hvis det nye er over, 1 hvis det er under og 2 hvis det er lige på.
 		før = self.nuværendeKort()
 		self.kort.pop()
+
+		# Hvis der ikke er flere kort tilbage, blander vi kortene og begynder forfra.
+		if(len(self.kort) == 0):
+			self.bland()
 		
 		if(self.nuværendeKort().værdi > før.værdi):
 			return 0
-		elif(self.nuværendeKort().værdi < før.værdi) :
+		elif(self.nuværendeKort().værdi < før.værdi):
 			return 1
 		else:
 			return 2
 
-kortVærdiTekst = {
-	1: "Es",
-	2: "To",
-	3: "Tre",
-	4: "Fire",
-	5: "Fem",
-	6: "Seks",
-	7: "Syv",
-	8: "Otte",
-	9: "Ni",
-	10: "Ti",
-	11: "Bonde",
-	12: "Dame",
-	13: "Konge"
-}
 
-kortKulørTekst = {
-	0: "Hjerter",
-	1: "Ruder",
-	2: "Spar",
-	3: "Klør"
-}
 
 class Kort:
 
@@ -60,4 +47,4 @@ class Kort:
 		self.kulør = kulør
 		
 	def tilStreng(self):
-		return kortKulørTekst[self.kulør] + " " + kortVærdiTekst[self.værdi]
+		return konstanter.kortKulørTekst[self.kulør] + " " + konstanter.kortVærdiTekst[self.værdi]

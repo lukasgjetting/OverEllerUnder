@@ -1,4 +1,5 @@
 import random
+import konstanter
 
 class Spiller:
 	promille = 0
@@ -8,8 +9,8 @@ class Spiller:
 		self.navn = navn;
 
 	def hævPromille(self):
-		"""Hæver brugerens promille med et tilfældigt kommatal mellem 0 og 0,5."""
-		self.promille += random.random() / 2
+		"""Hæver brugerens promille med et tilfældigt kommatal mellem 0 og 2."""
+		self.promille += random.random() * 5
 
 	def erDød(self):
 		"""Returnerer True hvis spillerens promille er over 4, ellers False."""
@@ -19,13 +20,11 @@ class Spiller:
 			return False
 
 
-navne = ["Noah", "Sofia", "Victor", "Alma", "Oliver", "Emma", "Oscar", "Ella", "William", "Ida", "Lukas", "Freja", "Carl", "Clara", "Malthe", "Anna", "Emil", "Laura", "Alfred", "Olivia"]
-nøgleord = ["Over", "Under", "Lige på"]
-
 class AISpiller(Spiller):
 
 	def __init__(self):
-		self.navn = navne[random.randint(0, len(navne)-1)]
+		# Giver spilleren et tilfældigt navn.
+		self.navn = konstanter.navne[random.randint(0, len(konstanter.navne)-1)]
 
 	def gæt(self, nuværendeKort):
 		"""
@@ -33,12 +32,12 @@ class AISpiller(Spiller):
 		Spillerens nuværende promille påvirker dens logiske sans.
 		"""
 
-		# Gæt på at næste kort er over, hvis kortets værdi er tilstrækkeligt (i forhold til promillen) langt over 7.
-		if(nuværendeKort.værdi - self.promille > 7):
+		# Gæt på at næste kort er over, hvis kortets værdi er tilstrækkeligt (i forhold til promillen) langt under 7.
+		if(nuværendeKort.værdi - (self.promille * 2) < 7):
 			return 0
 
-		# Gæt på at næste kort er under, hvis kortets værdi er tilstrækkeligt (i forhold til promillen) langt under 7.
-		elif(nuværendeKort.værdi + self.promille < 7): 
+		# Gæt på at næste kort er under, hvis kortets værdi er tilstrækkeligt (i forhold til promillen) langt over 7.
+		elif(nuværendeKort.værdi + (self.promille * 2) > 7): 
 			return 1
 		
 		# Ellers vælges muligheden tilfældigt, med en chance for at vælge lige på, der svarer til spillerens promille
