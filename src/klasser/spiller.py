@@ -18,22 +18,24 @@ class Spiller:
 		else:
 			return False
 
+
+navne = ["Noah", "Sofia", "Victor", "Alma", "Oliver", "Emma", "Oscar", "Ella", "William", "Ida", "Lukas", "Freja", "Carl", "Clara", "Malthe", "Anna", "Emil", "Laura", "Alfred", "Olivia"]
+nøgleord = ["Over", "Under", "Lige på"]
+
 class AISpiller(Spiller):
 
-	navne = ["Noah", "Sofia", "Victor", "Alma", "Oliver", "Emma", "Oscar", "Ella", "William", "Ida", "Lukas", "Freja", "Carl", "Clara", "Malthe", "Anna", "Emil", "Laura", "Alfred", "Olivia"]
-
 	def __init__(self):
-		self.navn = self.navne[random.randint(0, len(self.navne)-1)]
+		self.navn = navne[random.randint(0, len(navne)-1)]
 
 	def gæt(self, nuværendeKort):
 		"""
-		Returnerer 1, -1 eller 0 alt efter om spilleren gætter på at næste kort er over, under eller lige på
+		Returnerer 0, 1 eller 2 alt efter om spilleren gætter på at næste kort er over, under eller lige på
 		Spillerens nuværende promille påvirker dens logiske sans.
 		"""
 
 		# Gæt på at næste kort er over, hvis kortets værdi er tilstrækkeligt (i forhold til promillen) langt over 7.
 		if(nuværendeKort.værdi - self.promille > 7):
-			return -1
+			return 0
 
 		# Gæt på at næste kort er under, hvis kortets værdi er tilstrækkeligt (i forhold til promillen) langt under 7.
 		elif(nuværendeKort.værdi + self.promille < 7): 
@@ -45,10 +47,10 @@ class AISpiller(Spiller):
 
 			# Hvis tallet er under brugerens promille ganget ti, tager brugeren den satsede beslutning! 
 			if(tilfældigt < self.promille*10):
-				return 0
+				return 2
 
 			# Ellers vælges beslutningen bare efter om tallet er lige eller ulige.
 			elif(tilfældigt % 2 == 0):
-				return -1
+				return 0
 			else:
 				return 1

@@ -15,7 +15,7 @@ class Kortspil:
 	def nuværendeKort(self):
 		return self.kort[len(self.kort)-1]
 
-	def trækKort(self):
+	def trækOgSammenlignKort(self):
 		# Fjerner et kort fra kortspillet og returnerer 0 hvis det nye er over, 1 hvis det er under og 2 hvis det er lige på.
 		før = self.nuværendeKort()
 		self.kort.pop()

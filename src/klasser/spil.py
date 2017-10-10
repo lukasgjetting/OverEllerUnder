@@ -1,5 +1,6 @@
 from klasser.spiller import *
 from klasser.kortspil import *
+import time
 
 class Spil:
 	bruger = None
@@ -10,7 +11,7 @@ class Spil:
 	def __init__(self, bruger, antalModstandere):
 		self.bruger = bruger
 
-		self.aiSpillere = [antalModstandere]
+		self.aiSpillere = []
 
 		for i in range(0, antalModstandere):
 			self.aiSpillere.append(AISpiller())
@@ -21,6 +22,9 @@ class Spil:
 	
 	def spilLøkke(self):
 		while(self.spilErIGang):
+			print()
+			print()
+
 			print("Nuværende kort: " + self.kortspil.nuværendeKort().tilStreng())
 
 			kommandoer = ["o", "u"]
@@ -38,9 +42,9 @@ class Spil:
 				else:
 					print("Forkert input, prøv igen..")
 
-			rigtigt = self.kortspil.trækKort()
+			rigtigt = self.kortspil.trækOgSammenlignKort()
 
-			print("Du træk " + self.kortspil.nuværendeKort().tilStreng())
+			print("Du trak " + self.kortspil.nuværendeKort().tilStreng())
 
 			if(gæt == rigtigt):
 				print("Du gættede rigtigt!")
@@ -48,3 +52,25 @@ class Spil:
 				print("Du gættede forkert..")
 				print("*" + self.bruger.navn + " tager en tår*")
 				self.bruger.hævPromille()
+
+
+			for i in range(0, len(self.aiSpillere)):
+
+				print()
+				print()
+
+				nuværendeSpiller = self.aiSpillere[i]
+
+				gæt = nuværendeSpiller.gæt(self.kortspil.nuværendeKort())
+
+				# Vent mindst et halvt sekund, og yderligere tid alt efter spillerens promille
+				time.sleep(.5 * (nuværendeSpiller.promille + 1))
+				print(nuværendeSpiller.navn + " gætter på at næste kort er " + nøgleord[gæt])
+				time.sleep(.25)
+
+				if(gæt == self.kortspil.trækOgSammenlignKort()):
+					print(nuværendeSpiller.navn + " gættede rigtigt!")
+				else:
+					print(nuværendeSpiller.navn + " gættede forkert.")
+					print("*" + nuværendeSpiller.navn + " tager en tår*")
+					nuværendeSpiller.hævPromille()
