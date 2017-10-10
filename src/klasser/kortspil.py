@@ -12,15 +12,20 @@ class Kortspil:
 
 		random.shuffle(self.kort)
 
-		for i in range(len(self.kort)):
-			print(self.kort[i].tilStreng())
-
 	def nuværendeKort(self):
 		return self.kort[len(self.kort)-1]
 
 	def trækKort(self):
+		# Fjerner et kort fra kortspillet og returnerer 0 hvis det nye er over, 1 hvis det er under og 2 hvis det er lige på.
+		før = self.nuværendeKort()
 		self.kort.pop()
-		return self.nuværendeKort()
+		
+		if(self.nuværendeKort().værdi > før.værdi):
+			return 0
+		elif(self.nuværendeKort().værdi < før.værdi) :
+			return 1
+		else:
+			return 2
 
 kortVærdiTekst = {
 	1: "Es",

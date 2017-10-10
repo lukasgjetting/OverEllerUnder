@@ -48,7 +48,7 @@ class AISpiller(Spiller):
 				return 0
 
 			# Ellers vælges beslutningen bare efter om tallet er lige eller ulige.
-			elif(tilfældigt % 2 == 0): 
+			elif(tilfældigt % 2 == 0):
 				return -1
 			else:
 				return 1

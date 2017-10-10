@@ -19,6 +19,10 @@ def setup():
 
 	navn = input("Hvad er dit navn? ")
 	antalSpillere = int(input("Hvor mange andre spillere vil du spille med? (anbefalet mellem 1 og 5) "))
+	
+	# 2 blanke linjer
+	print()
+	print()
 
 	bruger = Spiller(navn)
 
