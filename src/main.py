@@ -17,6 +17,7 @@ def setup():
 	print("Velkommen til OverEllerUnder!")
 	print("Det bliver sjovt.\n")
 
+	# Spørg om brugerens navn og antal modspillere
 	navn = input("Hvad er dit navn? ")
 	antalSpillere = int(input("Hvor mange andre spillere vil du spille med? (anbefalet mellem 1 og 5) "))
 	
@@ -24,8 +25,10 @@ def setup():
 	print()
 	print()
 
+	# Opret en bruger med det givne navn.
 	bruger = Spiller(navn)
 
+	# Start spillet
 	spillet = Spil(bruger, antalSpillere)
 
 setup()

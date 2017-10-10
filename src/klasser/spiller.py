@@ -10,10 +10,12 @@ class Spiller:
 
 	def hævPromille(self):
 		"""Hæver brugerens promille med et tilfældigt kommatal mellem 0 og 2."""
-		self.promille += random.random() * 5
+		
+		self.promille += random.random() * 2
 
 	def erDød(self):
 		"""Returnerer True hvis spillerens promille er over 4, ellers False."""
+		
 		if(self.promille >= 4):
 			return True
 		else:
@@ -33,11 +35,11 @@ class AISpiller(Spiller):
 		"""
 
 		# Gæt på at næste kort er over, hvis kortets værdi er tilstrækkeligt (i forhold til promillen) langt under 7.
-		if(nuværendeKort.værdi - (self.promille * 2) < 7):
+		if(nuværendeKort.værdi + (self.promille * 2) < 7):
 			return 0
 
 		# Gæt på at næste kort er under, hvis kortets værdi er tilstrækkeligt (i forhold til promillen) langt over 7.
-		elif(nuværendeKort.værdi + (self.promille * 2) > 7): 
+		elif(nuværendeKort.værdi - (self.promille * 2) > 7): 
 			return 1
 		
 		# Ellers vælges muligheden tilfældigt, med en chance for at vælge lige på, der svarer til spillerens promille
